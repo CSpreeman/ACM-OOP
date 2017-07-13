@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ACME.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 namespace ACMBL
 {
     //could be declared Sealed if we didnt want any other code to extend or override its functionality
-    public class Order : EntityBase
+    public class Order : EntityBase, ILoggable
     {
         public Order()
         {
@@ -51,6 +52,15 @@ namespace ACMBL
         public override string ToString()
         {
             return OrderDate.Value + " (" + OrderId + ")";
+        }
+
+        public string Log()
+        {
+            var logString = this.OrderId + ": " +
+                            "Date: " + this.OrderDate.Value.Date + " " +
+                            "Status: " + this.EntityState.ToString();
+                
+            return logString;
         }
     }
 }

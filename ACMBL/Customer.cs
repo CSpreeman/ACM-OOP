@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ACME.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ACMBL
 {
-    public class Customer : EntityBase
+    public class Customer : EntityBase, ILoggable
     {
         //Default Constructor
         public Customer()
@@ -81,6 +82,15 @@ namespace ACMBL
         public override string ToString()
         {
             return FullName;
+        }
+
+        public string Log()
+        {
+            var logString = this.CustomerId + ": " +
+                            this.FullName + " " +
+                            "Email: " + this.EmailAddress + " " +
+                            "Status: " + this.EntityState.ToString();
+            return logString;
         }
     }
 }

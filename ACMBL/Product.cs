@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ACMBL
 {
-    public class Product : EntityBase
+    public class Product : EntityBase, ILoggable
     {
         public Product()
         {
@@ -40,10 +40,6 @@ namespace ACMBL
             set { _ProductName = value; }
         }
 
-
-
-
-
         public override bool Validate()
         {
             var isValid = true;
@@ -57,6 +53,15 @@ namespace ACMBL
         public override string ToString()
         {
             return ProductName;
+        }
+
+        public string Log()
+        {
+            var logString = this.ProductId + ": " +
+                            this.ProductName + " " +
+                            "Email: " + this.ProductDescription + " " +
+                            "Status: " + this.EntityState.ToString();
+            return logString;
         }
     }
 }
